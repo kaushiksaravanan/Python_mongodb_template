@@ -1,12 +1,17 @@
+import os
+import string
+import random
 import requests
 import pymongo
 
 
-client = pymongo.MongoClient("mongodb+srv://admin:lLBoZmX3ZMR3JVv7@cluster0.jknnc.mongodb.net/?retryWrites=true&w=majority")
+MONGODB_URI = os.environ.get("MONGODB_URI")
+if not MONGODB_URI:
+	raise RuntimeError("MONGODB_URI environment variable is not set. See .env.example.")
+
+client = pymongo.MongoClient(MONGODB_URI)
 db = client["website"]
 collection = db["data"]
-import string
-import random
 dummy=''
 print('Hi')
 print(collection)
